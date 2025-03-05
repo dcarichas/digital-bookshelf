@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'Frutiger';
+    src: url(/public/fonts/Frutiger.ttf);
+}
+
+.body {
+    font-family: 'Frutiger', sans-serif;
+}
+
+html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
+    font-family: 'Frutiger', sans-serif;
+}
+
+.mainContainer {
+    flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+    background-image: url('/public/wood.jpg');
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-repeat: no-repeat; /* Prevents repeating the image */
+    background-position: center; /* Centers the image */
+}
+
+/* Source: https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp */
+/* The sidebar menu */
+.sidebar {
+    height: 100%; /* Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: rgba(31, 17, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(5px); /* Apply blur effect to the background */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 75px; /* Place content 60px from the top */
+    transition: 0.5s; /* Transition effect for sliding in */
+}
+
+.sidebar::before {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute; /* Position it absolutely in the sidebar */
+    top: 70px; /* Position the line below the close button */
+    left: 0; /* Make sure the line starts from the left edge of the sidebar */
+    width: 100%; /* Make the line span the full width of the sidebar */
+    height: 2px; /* Line height (thickness) */
+
+    /* 3D Skeuomorphic effect using gradients */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 25%, rgba(0, 0, 0, 0.2) 75%);
+
+    /* Adding shadows to simulate depth */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 -1px 3px rgba(255, 255, 255, 0.2);
+}
+
+/* The sidebar links */
+.sidebar a {
+    padding: 15px 32px;  /* Increased padding to make the clickable area larger */
+    text-decoration: none;
+    font-size: 30px;
+    color: #dadada;
+    display: block;
+    transition: 0.3s;
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+    background-color: transparent; /* No background color initially */
+    border-top-right-radius: 5px;  /* Round only the top-right corner */
+    border-bottom-right-radius: 5px;  /* Round only the bottom-right corner */
+    margin-top: 10px;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+    color: #f1f1f1;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle background color on hover */
+}
+
+/* Optional: Add a more distinct effect when hovering, by increasing the padding or changing background */
+.sidebar a:hover {
+    padding-left: 40px;  /* Increase padding to expand the hover area */
+    padding-right: 40px;
+}
+
+/* Position and style the close button (top right corner) */
+.closebtn {
+    font-size: 45px; /* Size of the cross */
+    color: white; /* Color of the cross */
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    cursor: pointer; /* Change cursor to pointer */
+    padding: 0; /* Remove padding */
+    position: absolute; /* Position it in the top-right corner */
+    top: 0;
+    right: 25px;
+    z-index: 1; /* Make sure it appears above other elements */
+    transition: color 0.3s;
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.closebtn:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+    font-size: 35px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    transition: text-shadow 0.3s, transform 0.2s;
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Only glow when hovered */
+.openbtn:hover {
+    /* Glow effect on hover */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+.openbtn:active {
+    /* Subtle movement on click */
+    transform: translateY(1px);
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s; /* If you want a transition effect */
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}
