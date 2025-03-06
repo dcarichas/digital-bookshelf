@@ -1,6 +1,5 @@
-import React, {useState} from "react";
-
-// Source: https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +9,6 @@ const Sidebar: React.FC = () => {
 
     return (
         <div>
-            {/* Sidebar */}
             <div
                 id="mySidebar"
                 className="sidebar"
@@ -19,9 +17,9 @@ const Sidebar: React.FC = () => {
                 <button className="closebtn" onClick={closeNav}>
                     &times;
                 </button>
-                <a href="#">Biblioteca</a>
-                <a href="#">Adicionar</a>
-                <a href="#">Sobre</a>
+                <Link to="/biblioteca" onClick={closeNav}>Biblioteca</Link>
+                <Link to="/adicionar" onClick={closeNav}>Adicionar</Link>
+                <Link to="/sobre" onClick={closeNav}>Sobre</Link>
             </div>
 
             {!isOpen && (
