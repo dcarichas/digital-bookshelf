@@ -5,9 +5,17 @@ import Sidebar from "./assets/Sidebar.tsx";
 function App() {
 
   return (
-    <div className={"mainContainer"}>
-      <Sidebar/>
-    </div>
+      <>
+          <Sidebar/>
+          <div className={"mainContainer"}>
+              <div className={"infoContainer"}>
+                  <div className={"infoBox"}>
+                      <p className={"p-title"}> Biblioteca Vazia </p>
+                      <p className={"p-info"}> Adicione um livro</p>
+                  </div>
+              </div>
+          </div>
+      </>
 );
 }
 
