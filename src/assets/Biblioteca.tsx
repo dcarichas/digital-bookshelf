@@ -44,12 +44,12 @@ export const Biblioteca: React.FC = () => {
     return (
         <div className="infoContainer">
             {books.length === 0 ? (
-                <div className="infoBox">
+                <div className="infoBox fade-in">
                     <p className="p-title">Biblioteca Vazia</p>
                     <p className="p-info">Adicione um livro</p>
                 </div>
             ) : (
-                <div className="infoBox">
+                <div className="infoBox fade-in">
                     <p className="p-title">{books.length} livros presente(s)</p>
                 </div>
             )}

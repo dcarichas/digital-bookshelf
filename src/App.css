@@ -69,6 +69,152 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
     text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
 }
 
+.fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Style for the right arrow button */
+.toggleSummaryButton {
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    background-color: rgba(211, 211, 211, 0.8);
+    border: 2px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.toggleSummaryButton:hover {
+    background-color: #f0f0f0;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toggleSummaryButton:focus {
+    outline: none;
+}
+
+.toggleSummaryButton:active {
+    background-color: #d0d0d0;
+    transform: translateY(1px);
+}
+
+.formContainer {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;  /* Centering vertically */
+    background-color: transparent; /* Ensure the background is transparent */
+}
+
+/* New container for the form with black rectangle background */
+.formWrapper {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    align-items: center;  /* Centering form elements horizontally */
+    justify-content: center; /* Centering form elements vertically */
+    width: 400px; /* Set the width of the rectangle */
+    padding: 40px; /* Add some padding to the inside of the rectangle */
+    background: rgba(10, 10, 10, 0.8);
+    border-radius: 10px; /* Rounded corners */
+    border: 1px solid transparent; /* Transparent border */
+    background-clip: padding-box; /* Ensures background doesn't cover the border */
+
+    /* Skeuomorphic border using gradients and shadows */
+    box-shadow:
+            0 2px 5px rgba(0, 0, 0, 0.5), /* Inner shadow for depth */
+            inset 0 1px 3px rgba(255, 255, 255, 0.2), /* Light inner highlight */
+            0 1px 10px rgba(0, 0, 0, 0.5), /* Outer soft shadow for a lifted effect */
+            0 8px 15px rgba(0, 0, 0, 0.3); /* Soft shadow to lift the box */
+}
+
+/* Form group */
+.form-group {
+    margin-bottom: 20px;
+    width: 100%; /* Ensure form fields take the full width of the container */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Glassy border with transparency */
+    border-radius: 10px;
+    background-color: rgba(117, 117, 117, 0.5); /* Semi-transparent dark background */
+    color: #ffffff; /* Brighter text */
+    font-size: 16px;
+    outline: none;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(5px); /* Apply a blur effect behind the element for glassy effect */
+
+    /* Removed the glow from box-shadow */
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.6),
+    inset -3px -3px 6px rgba(100, 100, 100, 0.2); /* Subtle inner shadows for depth */
+}
+
+/* Input focus effect */
+input:focus, textarea:focus {
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.8),
+    inset -2px -2px 4px rgba(100, 100, 100, 0.3); /* Keep the inner shadow on focus */
+    background-color: rgba(216, 216, 216, 0.8); /* Lighter background on focus */
+    color: #000000; /* Keep text bright on focus */
+}
+
+/* Placeholder text styling */
+input::placeholder, textarea::placeholder {
+    color: #8a8a8a; /* Lighter placeholder text */
+}
+
+/* Skeuomorphic button with default shadow */
+.form-submit {
+    display: block;
+    padding: 12px;
+    margin: 30px auto 0;
+    border: none;
+    border-radius: 12px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgba(240, 240, 240, 0.9); /* Semi-transparent white background */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Default shadow */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px); /* Apply a blur effect behind the button for glassy effect */
+}
+
+/* Button hover effect with natural glow and animation */
+.form-submit:hover {
+    box-shadow: 0 8px 15px rgba(244, 244, 244, 0.5), /* Soft glow on hover */
+    0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    background-color: rgba(232, 232, 232, 0.9); /* Slightly darker background on hover */
+    color: #959595;
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Button active (pressed) effect */
+.form-submit:active {
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2), /* Inset shadow for pressed effect */
+    inset -3px -3px 6px rgba(255, 255, 255, 0.7); /* Inset highlight */
+    background-color: rgba(220, 220, 220, 0.9); /* Lighter background on active state */
+    transform: translateY(0); /* Remove lift when pressed */
+}
+
 /* Source: https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp */
 /* The sidebar menu */
 .sidebar {
