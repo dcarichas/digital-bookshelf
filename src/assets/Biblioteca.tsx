@@ -63,38 +63,44 @@ export const Biblioteca: React.FC = () => {
     }
 
     return (
-        <div className={"bookshelfContainer fade-in"}>
-            <div className="searchBarContainer">
-                <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    placeholder="Pesquisar livros..."
-                    className="searchBar"
-                />
-            </div>
-
-            {filteredBooks.length === 0 ? (
+        books.length === 0 ?
+            <div className={"bookshelfContainer fade-in"}>
                 <div className="emptyShelf">
                     <p className="p-title">Biblioteca Vazia</p>
                     <p className="p-info">Adicione um livro</p>
                 </div>
-            ) : (
-                rows.map((row, rowIndex) => (
-                    <div key={rowIndex} className="bookshelfRow">
-                        {row.map((book) => (
-                            <div
-                                key={book.id}
-                                className="bookItem"
-                                onClick={() => navigate(`/book/${book.id}`)}
-                                style={{ cursor: "pointer" }}
-                            >
-                                <p className="bookTitle">{book.name}</p>
-                            </div>
-                        ))}
+            </div>
+            :
+            <div className={"bookshelfContainer fade-in"}>
+                <div className="searchBarContainer">
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        placeholder="Pesquisar livros..."
+                        className="searchBar"
+                    />
+                </div>
+                {filteredBooks.length === 0 ? (
+                    <div className="emptyShelf">
+                        <p className="p-title">Nenhum livro encontrado</p>
                     </div>
-                ))
-            )}
-        </div>
+                ) : (
+                    rows.map((row, rowIndex) => (
+                        <div key={rowIndex} className="bookshelfRow">
+                            {row.map((book) => (
+                                <div
+                                    key={book.id}
+                                    className="bookItem"
+                                    onClick={() => navigate(`/book/${book.id}`)}
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    <p className="bookTitle">{book.name}</p>
+                                </div>
+                            ))}
+                        </div>
+                    ))
+                )}
+            </div>
     );
 };

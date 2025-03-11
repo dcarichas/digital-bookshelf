@@ -49,7 +49,7 @@ export const BookDetails: React.FC = () => {
     }
 
     return (
-        <div className="bookDetailsContainer">
+        <div className="bookDetailsContainer fade-in">
             <h2 className="bookTitle">{book.name}</h2>
             <p><strong>Autor:</strong> {book.author}</p>
             <p><strong>Ano:</strong> {book.year}</p>
