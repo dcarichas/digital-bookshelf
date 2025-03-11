@@ -34,9 +34,8 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
     justify-content: center;
     align-content: center;
     align-items: center;
-    width: 50%;
+    width: 400px;
     height: 20vh;
-    border-radius: 30px;
     border: 1px solid transparent; /* Transparent border */
     background-clip: padding-box; /* Ensures the background doesn't cover the border */
 
@@ -182,39 +181,6 @@ input::placeholder, textarea::placeholder {
     color: #8a8a8a; /* Lighter placeholder text */
 }
 
-/* Skeuomorphic button with default shadow */
-.form-submit {
-    display: block;
-    padding: 12px;
-    margin: 30px auto 0;
-    border: none;
-    border-radius: 12px;
-    color: #333;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: rgba(240, 240, 240, 0.9); /* Semi-transparent white background */
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Default shadow */
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px); /* Apply a blur effect behind the button for glassy effect */
-}
-
-/* Button hover effect with natural glow and animation */
-.form-submit:hover {
-    box-shadow: 0 8px 15px rgba(244, 244, 244, 0.5), /* Soft glow on hover */
-    0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
-    background-color: rgba(232, 232, 232, 0.9); /* Slightly darker background on hover */
-    color: #959595;
-    transform: translateY(-2px); /* Slight lift effect */
-}
-
-/* Button active (pressed) effect */
-.form-submit:active {
-    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2), /* Inset shadow for pressed effect */
-    inset -3px -3px 6px rgba(255, 255, 255, 0.7); /* Inset highlight */
-    background-color: rgba(220, 220, 220, 0.9); /* Lighter background on active state */
-    transform: translateY(0); /* Remove lift when pressed */
-}
-
 /* Source: https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp */
 /* The sidebar menu */
 .sidebar {
@@ -328,4 +294,201 @@ input::placeholder, textarea::placeholder {
 @media screen and (max-height: 450px) {
     .sidebar {padding-top: 15px;}
     .sidebar a {font-size: 18px;}
+}
+
+/* Books in the library */
+
+.bookshelfContainer {
+    background-size: cover;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bookshelfRow {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px; /* Space between rows */
+}
+
+.bookItem {
+    width: 120px;
+    height: 180px;
+    background: linear-gradient(to bottom, #d4af87, #a67c52);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.bookItem:hover {
+    transform: translateY(-10px);
+}
+
+.bookTitle {
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.8);
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.emptyShelf {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bookDetailsContainer {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(6px); /* More intense glassy effect */
+    box-shadow:
+            0 4px 10px rgba(0, 0, 0, 0.8), /* Soft outer shadow */
+            inset 0 1px 3px rgba(255, 255, 255, 0.2); /* Light inner glow */
+}
+
+.bookDetailsContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 3px;
+    padding: 4px; /* Border thickness */
+    background: linear-gradient(#e7e7e7, #c7c7c7, #8c8c8c, #c0c0c0);
+    -webkit-mask:
+            linear-gradient(white 0 0) content-box,
+            linear-gradient(white 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    z-index: -1;
+}
+
+.summaryContainer {
+    text-align: center; /* Align the summary text to the left */
+    margin-bottom: 20px;
+}
+
+.summaryContainer p {
+    margin: 0;
+}
+
+.summaryText {
+    white-space: pre-wrap; /* Ensures that the text will wrap */
+    word-wrap: break-word; /* Breaks long words if necessary */
+    overflow-wrap: break-word; /* Same as word-wrap */
+    word-break: break-word; /* Ensures long words break if necessary */
+    line-height: 1.6; /* Adds some line height for readability */
+    max-height: 300px; /* Optional: set a maximum height if needed */
+    overflow-y: auto; /* Allows scrolling within the container if text exceeds max height */
+}
+
+/* Buttons */
+
+.genericButton {
+    background: linear-gradient(to bottom, #d2b48c, #a07858); /* Light to dark for depth background */
+    color: white;
+    display: block;
+    padding: 12px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 8px; /* More rounded for a softer look */
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow:
+            inset 2px 2px 3px rgba(255, 255, 255, 0.6),  /* Soft highlight */
+            inset -2px -2px 5px rgba(0, 0, 0, 0.4), /* Inner shadow for depth */
+            2px 2px 5px rgba(0, 0, 0, 0.3); /* Outer shadow for lifting effect */
+    transition: all 0.2s ease-in-out;
+}
+
+.genericButton:hover {
+    background: linear-gradient(to bottom, #b69575, #8a6850);
+    box-shadow:
+            inset 1px 1px 2px rgba(255, 255, 255, 0.5),
+            inset -1px -1px 3px rgba(0, 0, 0, 0.4),
+            1px 1px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7); /* Glow effect */
+}
+
+.genericButton:active {
+    background: linear-gradient(to bottom, #a07858, #d2b48c); /* Inverted for pressed effect */
+    box-shadow:
+            inset 3px 3px 4px rgba(0, 0, 0, 0.5),
+            inset -3px -3px 5px rgba(255, 255, 255, 0.3);
+    transform: translateY(2px); /* Gives a pressed effect */
+}
+
+.deleteButton {
+    background: linear-gradient(to bottom, #bd2929, #652222); /* Light to dark for depth background */
+    color: white;
+    display: block;
+    padding: 12px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 8px; /* More rounded for a softer look */
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow:
+            inset 2px 2px 3px rgba(255, 255, 255, 0.6),  /* Soft highlight */
+            inset -2px -2px 5px rgba(0, 0, 0, 0.4), /* Inner shadow for depth */
+            2px 2px 5px rgba(0, 0, 0, 0.3); /* Outer shadow for lifting effect */
+    transition: all 0.2s ease-in-out;
+}
+
+.deleteButton:hover {
+    background: linear-gradient(to bottom, #8c2626, #560f0f);
+    box-shadow:
+            inset 1px 1px 2px rgba(255, 255, 255, 0.5),
+            inset -1px -1px 3px rgba(0, 0, 0, 0.4),
+            1px 1px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7); /* Glow effect */
+}
+
+.deleteButton:active {
+    background: linear-gradient(to bottom, #6c1515, #cb0808); /* Inverted for pressed effect */
+    box-shadow:
+            inset 3px 3px 4px rgba(0, 0, 0, 0.5),
+            inset -3px -3px 5px rgba(255, 255, 255, 0.3);
+    transform: translateY(2px); /* Gives a pressed effect */
+}
+
+.detail-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* Search bar */
+.searchBarContainer {
+    text-align: center;
+    width: 750px;
+    margin-bottom: 40px;
+}
+
+.searchBar {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }

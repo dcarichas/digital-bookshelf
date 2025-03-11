@@ -23,7 +23,7 @@ export const Loading: React.FC = () => {
     return(
         <div style={loadingStyles.loadingContainer}>
             <div style={loadingStyles.spinner}></div>
-            <p>Loading...</p>
+            <p>A Carregar...</p>
         </div>
     )
 }

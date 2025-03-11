@@ -8,6 +8,8 @@ import {Adicionar} from "./assets/Adicionar.tsx";
 import {Sobre} from "./assets/Sobre.tsx";
 import {Biblioteca} from "./assets/Biblioteca.tsx";
 import Sidebar from "./assets/Sidebar.tsx";
+import {BookDetails} from "./assets/BookDetails.tsx";
+import {EditBook} from "./assets/EditBook.tsx";
 
 const MainLayout: React.FC = () => {
     return (
@@ -27,6 +29,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<AppInit />} />
                     <Route path="/biblioteca" element={<Biblioteca />} />
+                    <Route path="/book/:id" element={<BookDetails />} />
+                    <Route path="/edit-book/:id" element={<EditBook />} />
                     <Route path="/adicionar" element={<Adicionar />} />
                     <Route path="/sobre" element={<Sobre />} />
                 </Route>

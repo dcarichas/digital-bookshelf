@@ -1,17 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Database from "@tauri-apps/plugin-sql";
-import {useNavigate} from "react-router-dom";
+import {Loading} from "./Loading.tsx";
 
-export const Adicionar: React.FC = () => {
-    // State to track the form inputs
+export const EditBook: React.FC = () => {
+    const { id } = useParams<{ id: string }>(); // Get book ID from URL
+    const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [year, setYear] = useState<number | string>("");
     const [summary, setSummary] = useState("");
     const [loanAmount, setLoanAmount] = useState<number | string>("");
     const [isSummaryView, setIsSummaryView] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        const fetchBookDetails = async () => {
+            try {
+                const db = await Database.load("sqlite:books.db");
+                const result = await db.select("SELECT * FROM books WHERE id = ?", [id]);
+
+                if (result.length > 0) {
+                    const book = result[0];
+                    setTitle(book.name);
+                    setAuthor(book.author);
+                    setYear(book.year);
+                    setSummary(book.summary || "");
+                    setLoanAmount(book.loanAmount.toString());
+                } else {
+                    alert("Livro não encontrado.");
+                    navigate("/biblioteca");
+                }
+            } catch (e) {
+                console.error("Erro ao buscar detalhes do livro:", e);
+                alert("Erro ao carregar detalhes do livro.");
+                navigate("/biblioteca");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchBookDetails();
+    }, [id, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -25,17 +55,20 @@ export const Adicionar: React.FC = () => {
         try {
             const db = await Database.load('sqlite:books.db');
             await db.execute(`
-                INSERT INTO books (name, author, year, summary, loanAmount) 
-                VALUES ($1, $2, $3, $4, $5)`,
-                [title, author, parseInt(year as string), summary, parseFloat(loanAmount as string)]
+                UPDATE books SET name = ?, author = ?, year = ?, summary = ?, loanAmount = ? WHERE id = ?`,
+                [title, author, parseInt(year as string), summary, parseFloat(loanAmount as string), id]
             );
-            console.log("Livro adicionado com sucesso");
-            navigate("/biblioteca");
+            console.log("Livro atualizado com sucesso");
+            navigate(`/book/${id}`);
         } catch (error) {
-            console.error("Erro ao adicionar o livro:", error);
-            alert("Erro ao adicionar o livro. Tente novamente.");
+            console.error("Erro ao atualizar o livro:", error);
+            alert("Erro ao atualizar o livro. Tente novamente.");
         }
     };
+
+    if (isLoading) {
+        return <Loading/>
+    }
 
     return (
         <div className="formContainer">
@@ -99,7 +132,12 @@ export const Adicionar: React.FC = () => {
                             </div>
                         </>
                     }
-                    <button className={"genericButton"} style={{margin: "30px auto 0"}} type="submit">Adicionar Livro</button>
+                    <div className={"detail-buttons"}>
+                        <button className={"genericButton"} type={"button"} onClick={() => navigate(-1)}>
+                            Voltar
+                        </button>
+                        <button className={"genericButton"} type="submit">Guardar Alterações</button>
+                    </div>
                 </form>
                 <button
                     className="toggleSummaryButton"
@@ -108,7 +146,6 @@ export const Adicionar: React.FC = () => {
                     {isSummaryView ? '←' : '→'}
                 </button>
             </div>
-
         </div>
     );
 };
