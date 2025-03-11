@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import "./App.css";
 import Database from "@tauri-apps/plugin-sql";
 import { Loading } from "./assets/Loading";
