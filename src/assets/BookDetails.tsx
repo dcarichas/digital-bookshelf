@@ -14,7 +14,7 @@ export const BookDetails: React.FC = () => {
         const fetchBookDetails = async () => {
             try {
                 const db = await Database.load("sqlite:books.db");
-                const result = await db.select("SELECT * FROM books WHERE id = ?", [id]);
+                const result: Book[] = await db.select("SELECT * FROM books WHERE id = ?", [id]);
 
                 if (result.length > 0) {
                     const row = result[0];

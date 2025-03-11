@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Database from "@tauri-apps/plugin-sql";
 import {Loading} from "./Loading.tsx";
+import {Book} from "../model/Book.ts";
 
 export const EditBook: React.FC = () => {
     const { id } = useParams<{ id: string }>(); // Get book ID from URL
@@ -18,7 +19,7 @@ export const EditBook: React.FC = () => {
         const fetchBookDetails = async () => {
             try {
                 const db = await Database.load("sqlite:books.db");
-                const result = await db.select("SELECT * FROM books WHERE id = ?", [id]);
+                const result: Book[] = await db.select("SELECT * FROM books WHERE id = ?", [id]);
 
                 if (result.length > 0) {
                     const book = result[0];
@@ -85,7 +86,6 @@ export const EditBook: React.FC = () => {
                                 value={summary}
                                 onChange={(e) => setSummary(e.target.value)}
                                 placeholder="Resumo do livro (Opcional)"
-                                required
                             />
                         </div>
                         :

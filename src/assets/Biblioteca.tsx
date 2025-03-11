@@ -15,16 +15,18 @@ export const Biblioteca: React.FC = () => {
         const fetchBooks = async () => {
             try {
                 const db = await Database.load("sqlite:books.db");
-                const result = await db.select("SELECT * FROM books");
+                const result: Book[] = await db.select("SELECT * FROM books");
 
-                const fetchedBooks = result.map((row: any) => ({
-                    id: row.id,
-                    name: row.name,
-                    author: row.author,
-                    year: row.year,
-                    summary: row.summary,
-                    loanAmount: row.loanAmount,
-                }));
+                const fetchedBooks = result.map((row: Book)  => (
+                    new Book(
+                        row.id,
+                        row.name,
+                        row.author,
+                        row.year,
+                        row.summary,
+                        row.loanAmount
+                    )
+                ));
 
                 // Sort the books by name in alphabetical order
                 fetchedBooks.sort((a, b) => a.name.localeCompare(b.name));

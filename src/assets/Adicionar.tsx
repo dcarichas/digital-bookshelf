@@ -52,7 +52,6 @@ export const Adicionar: React.FC = () => {
                                 value={summary}
                                 onChange={(e) => setSummary(e.target.value)}
                                 placeholder="Resumo do livro (Opcional)"
-                                required
                             />
                         </div>
                         :
