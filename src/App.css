@@ -68,6 +68,25 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
     text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
 }
 
+.a-info {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    color: #dadada;
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.a-info:hover {
+    color: #ffffff;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8),
+    0px 0px 20px rgba(255, 255, 255, 0.6),
+    0px 0px 30px rgba(255, 255, 255, 0.4);
+}
+
 .fade-in {
     opacity: 1;
     animation-name: fadeInOpacity;
@@ -87,15 +106,19 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
 
 /* Style for the right arrow button */
 .toggleSummaryButton {
+    font-family: 'Frutiger', sans-serif;
+    font-weight: bold;
+    display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin-top: 20px;
+    align-self: center;
+    justify-self: center;
     padding: 10px 15px;
     font-size: 18px;
     background-color: rgba(211, 211, 211, 0.8);
     border: 2px solid #333;
-    border-radius: 50%;
+    border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
@@ -131,7 +154,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
     align-items: center;  /* Centering form elements horizontally */
     justify-content: center; /* Centering form elements vertically */
     width: 400px; /* Set the width of the rectangle */
-    padding: 40px; /* Add some padding to the inside of the rectangle */
+    padding: 50px; /* Add some padding to the inside of the rectangle */
     background: rgba(10, 10, 10, 0.8);
     border-radius: 10px; /* Rounded corners */
     border: 1px solid transparent; /* Transparent border */
@@ -145,6 +168,10 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
             0 8px 15px rgba(0, 0, 0, 0.3); /* Soft shadow to lift the box */
 }
 
+.formGroupContainer {
+    width: 100%;
+}
+
 /* Form group */
 .form-group {
     margin-bottom: 20px;
@@ -153,7 +180,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
 
 input, textarea {
     width: 100%;
-    padding: 12px;
+    padding: 15px;
     border: 2px solid rgba(255, 255, 255, 0.3); /* Glassy border with transparency */
     border-radius: 10px;
     background-color: rgba(117, 117, 117, 0.5); /* Semi-transparent dark background */
@@ -348,6 +375,7 @@ input::placeholder, textarea::placeholder {
     text-align: center;
     font-size: 18px;
     font-weight: bold;
+    justify-items: center;
 }
 
 .bookDetailsContainer {

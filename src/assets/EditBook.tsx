@@ -48,16 +48,17 @@ export const EditBook: React.FC = () => {
         e.preventDefault();
 
         // Simple validation: Ensure all fields are filled
-        if (!title || !author || !year || !loanAmount) {
+        if (!title || !author || !year) {
             alert("Por favor, preencha todos os campos.");
             return;
         }
 
         try {
             const db = await Database.load('sqlite:books.db');
+            const parsedAmount = loanAmount === "" ? 0 : parseFloat(loanAmount as string);
             await db.execute(`
                 UPDATE books SET name = ?, author = ?, year = ?, summary = ?, loanAmount = ? WHERE id = ?`,
-                [title, author, parseInt(year as string), summary, parseFloat(loanAmount as string), id]
+                [title, author, parseInt(year as string), summary, parsedAmount, id]
             );
             console.log("Livro atualizado com sucesso");
             navigate(`/book/${id}`);
@@ -126,12 +127,18 @@ export const EditBook: React.FC = () => {
                                     id="loanAmount"
                                     value={loanAmount}
                                     onChange={(e) => setLoanAmount(e.target.value)}
-                                    placeholder="Valor do empréstimo"
-                                    required
+                                    placeholder="Empréstimo (Opcional)"
                                 />
                             </div>
                         </>
                     }
+                    <button
+                        className="toggleSummaryButton"
+                        onClick={() => setIsSummaryView(!isSummaryView)}
+                        type="button"
+                    >
+                        {isSummaryView ? 'Voltar' : 'Inserir Resumo'}
+                    </button>
                     <div className={"detail-buttons"}>
                         <button className={"genericButton"} type={"button"} onClick={() => navigate(-1)}>
                             Voltar
@@ -139,12 +146,6 @@ export const EditBook: React.FC = () => {
                         <button className={"genericButton"} type="submit">Guardar Alterações</button>
                     </div>
                 </form>
-                <button
-                    className="toggleSummaryButton"
-                    onClick={() => setIsSummaryView(!isSummaryView)}
-                >
-                    {isSummaryView ? '←' : '→'}
-                </button>
             </div>
         </div>
     );

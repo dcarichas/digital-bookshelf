@@ -17,17 +17,18 @@ export const Adicionar: React.FC = () => {
         e.preventDefault();
 
         // Simple validation: Ensure all fields are filled
-        if (!title || !author || !year || !loanAmount) {
+        if (!title || !author || !year) {
             alert("Por favor, preencha todos os campos.");
             return;
         }
 
         try {
             const db = await Database.load('sqlite:books.db');
+            const parsedAmount = loanAmount === "" ? 0 : parseFloat(loanAmount as string);
             await db.execute(`
                 INSERT INTO books (name, author, year, summary, loanAmount) 
                 VALUES ($1, $2, $3, $4, $5)`,
-                [title, author, parseInt(year as string), summary, parseFloat(loanAmount as string)]
+                [title, author, parseInt(year as string), summary, parsedAmount]
             );
             console.log("Livro adicionado com sucesso");
             navigate("/biblioteca");
@@ -40,13 +41,13 @@ export const Adicionar: React.FC = () => {
     return (
         <div className="formContainer">
             <div className={"formWrapper fade-in"}>
-                <form onSubmit={handleSubmit}>
+                <form className={"formGroupContainer"} onSubmit={handleSubmit}>
                     {isSummaryView ?
                         <div className="form-group">
                             <textarea
                                 style={{
-                                    height: "300px",
-                                    width: "300px"
+                                    width: "300px",
+                                    height: "300px"
                                 }}
                                 id="summary"
                                 value={summary}
@@ -92,20 +93,20 @@ export const Adicionar: React.FC = () => {
                                     id="loanAmount"
                                     value={loanAmount}
                                     onChange={(e) => setLoanAmount(e.target.value)}
-                                    placeholder="Valor do empréstimo"
-                                    required
+                                    placeholder="Empréstimo (Opcional)"
                                 />
                             </div>
                         </>
                     }
+                    <button
+                        className="toggleSummaryButton"
+                        onClick={() => setIsSummaryView(!isSummaryView)}
+                        type="button"
+                    >
+                        {isSummaryView ? 'Voltar' : 'Inserir Resumo'}
+                    </button>
                     <button className={"genericButton"} style={{margin: "30px auto 0"}} type="submit">Adicionar Livro</button>
                 </form>
-                <button
-                    className="toggleSummaryButton"
-                    onClick={() => setIsSummaryView(!isSummaryView)}
-                >
-                    {isSummaryView ? '←' : '→'}
-                </button>
             </div>
 
         </div>

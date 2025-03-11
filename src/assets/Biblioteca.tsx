@@ -69,7 +69,7 @@ export const Biblioteca: React.FC = () => {
             <div className={"bookshelfContainer fade-in"}>
                 <div className="emptyShelf">
                     <p className="p-title">Biblioteca Vazia</p>
-                    <p className="p-info">Adicione um livro</p>
+                    <a className={"a-info"} onClick={() => navigate("/adicionar")}>Adicione um livro</a>
                 </div>
             </div>
             :
