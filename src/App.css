@@ -108,9 +108,10 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
 .toggleSummaryButton {
     font-family: 'Frutiger', sans-serif;
     font-weight: bold;
-    display: grid;
-    justify-self: center;
     padding: 10px 15px;
+    margin: auto;
+    justify-self: center;
+    display: flex;
     font-size: 18px;
     background-color: rgba(211, 211, 211, 0.8);
     border: 2px solid #333;
