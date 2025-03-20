@@ -401,13 +401,13 @@ input::placeholder, textarea::placeholder {
     grid-auto-rows: 190px;
     gap: 20px;
     width: 100%;
-    height: 100%;
+    height: 75%;
     overflow-y: auto; /* Enables scrolling */
     position: relative;
 
     /* Ensures bottom content isn't permanently faded */
     /* Space for scrollbar */
-    padding: 30px 20px var(--mask-height) 30px;
+    padding: 30px 25px var(--mask-height) 30px;
 
     /* Content fade mask */
     --mask-image-content: linear-gradient(
