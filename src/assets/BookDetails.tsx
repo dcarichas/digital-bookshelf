@@ -61,7 +61,7 @@ export const BookDetails: React.FC = () => {
             )}
             <p><strong>Empréstimo:</strong> {book.loanAmount.toFixed(2)}€</p>
             <div className={"detail-buttons"}>
-                <button className="genericButton" onClick={() => navigate("/biblioteca")}>Voltar</button>
+                <button className="genericButton" onClick={() => navigate("/biblioteca")}>&lt; Voltar</button>
                 <button className="genericButton" onClick={() => navigate(`/edit-book/${id}`)}>Editar</button>
                 <button className="deleteButton" onClick={handleDelete}>Eliminar</button>
             </div>

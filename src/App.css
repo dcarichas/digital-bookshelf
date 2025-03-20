@@ -135,8 +135,39 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, span, div {
     transform: translateY(1px);
 }
 
+.simpleButton {
+    font-family: 'Frutiger', sans-serif;
+    font-weight: bold;
+    padding: 10px 15px;
+    justify-self: center;
+    display: flex;
+    font-size: 18px;
+    background-color: rgba(248, 238, 229, 0.8);
+    border: 2px solid #333;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.simpleButton:hover {
+    background-color: #f3e2d6;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.simpleButton:focus {
+    outline: none;
+}
+
+.simpleButton:active {
+    background-color: #d0d0d0;
+    transform: translateY(1px);
+}
+
 .formContainer {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
     height: 100vh;
     justify-content: center;
@@ -508,7 +539,7 @@ input::placeholder, textarea::placeholder {
 .searchBarContainer {
     text-align: center;
     width: 750px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .searchBar {

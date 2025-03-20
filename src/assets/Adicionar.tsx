@@ -105,10 +105,14 @@ export const Adicionar: React.FC = () => {
                     >
                         {isSummaryView ? 'Voltar' : 'Inserir Resumo'}
                     </button>
-                    <button className={"genericButton"} style={{margin: "30px auto 0"}} type="submit">Adicionar Livro</button>
+                    <div className={"detail-buttons"}>
+                        <button className={"genericButton"} type={"button"} onClick={() => navigate("/biblioteca")}>
+                            &lt; Biblioteca
+                        </button>
+                        <button className={"genericButton"} type="submit">Adicionar Livro</button>
+                    </div>
                 </form>
             </div>
-
         </div>
     );
 };

@@ -83,6 +83,9 @@ export const Biblioteca: React.FC = () => {
                         className="searchBar"
                     />
                 </div>
+                <button className="simpleButton" style={{marginBottom: "40px"}} onClick={() => navigate("/adicionar")}>
+                    Adicionar um livro
+                </button>
                 {filteredBooks.length === 0 ? (
                     <div className="emptyShelf">
                         <p className="p-title">Nenhum livro encontrado</p>

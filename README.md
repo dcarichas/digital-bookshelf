@@ -6,7 +6,7 @@
 
 Very, VERY simple standalone application to store information about owned books and their loans, made for an aunt of mine :)
 
-Needs polishing
+Needs polishing and code organization
 
 ## Requirements
 

@@ -141,7 +141,7 @@ export const EditBook: React.FC = () => {
                     </button>
                     <div className={"detail-buttons"}>
                         <button className={"genericButton"} type={"button"} onClick={() => navigate(-1)}>
-                            Voltar
+                            &lt; Voltar
                         </button>
                         <button className={"genericButton"} type="submit">Guardar Alterações</button>
                     </div>
