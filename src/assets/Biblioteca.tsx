@@ -83,17 +83,23 @@ export const Biblioteca: React.FC = () => {
                         className="searchBar"
                     />
                 </div>
-                <button className="simpleButton" style={{marginBottom: "40px"}} onClick={() => navigate("/adicionar")}>
-                    Adicionar um livro
-                </button>
                 {filteredBooks.length === 0 ? (
                     <div className="emptyShelf">
                         <p className="p-title">Nenhum livro encontrado</p>
                     </div>
                 ) : (
-                    rows.map((row, rowIndex) => (
-                        <div key={rowIndex} className="bookshelfRow">
-                            {row.map((book) => (
+                    <div className={"bookShelfGridContainer"}>
+                        <div className={"leftContainer"}>
+                            <button
+                                className="simpleButton"
+                                style={{marginBottom: "10px", marginLeft: "20px", marginTop: "20px"}}
+                                onClick={() => navigate("/adicionar")}
+                            >
+                                Adicionar um livro
+                            </button>
+                        </div>
+                        <div className="bookshelfGrid">
+                            {filteredBooks.map((book) => (
                                 <div
                                     key={book.id}
                                     className="bookItem"
@@ -104,7 +110,7 @@ export const Biblioteca: React.FC = () => {
                                 </div>
                             ))}
                         </div>
-                    ))
+                    </div>
                 )}
             </div>
     );
