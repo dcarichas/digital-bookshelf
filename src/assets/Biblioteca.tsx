@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"; // Import for navigation
 import Database from "@tauri-apps/plugin-sql";
 import { Book } from "../model/Book.ts";
 import {Loading} from "./Loading.tsx";
-import {Simulate} from "react-dom/test-utils";
 
 export const Biblioteca: React.FC = () => {
     const [books, setBooks] = useState<Book[]>([]);
