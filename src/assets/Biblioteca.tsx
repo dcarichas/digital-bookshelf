@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"; // Import for navigation
 import Database from "@tauri-apps/plugin-sql";
 import { Book } from "../model/Book.ts";
 import {Loading} from "./Loading.tsx";
+import {Simulate} from "react-dom/test-utils";
+import toggle = Simulate.toggle;
 
 export const Biblioteca: React.FC = () => {
     const [books, setBooks] = useState<Book[]>([]);
@@ -10,6 +12,18 @@ export const Biblioteca: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState(""); // State for search query
     const navigate = useNavigate(); // Initialize navigation
+
+    const [listMode, setListMode] = useState<boolean>(() => {
+        return localStorage.getItem("listMode") === "true";
+    });
+
+    const toggleListMode = () => {
+        setListMode((prev) => {
+            const newValue = !prev;
+            localStorage.setItem("listMode", newValue.toString());
+            return newValue;
+        });
+    };
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -92,24 +106,46 @@ export const Biblioteca: React.FC = () => {
                         <div className={"leftContainer"}>
                             <button
                                 className="simpleButton"
-                                style={{marginBottom: "10px", marginLeft: "20px", marginTop: "20px"}}
+                                style={{marginLeft: "20px"}}
                                 onClick={() => navigate("/adicionar")}
                             >
                                 Adicionar um livro
                             </button>
+                            <div style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                gap: "10px"
+                            }}
+                            >
+                                <p style={{color: "white", margin: 0}}>Modo Lista</p>
+                                <label className="switch">
+                                    <input
+                                        type="checkbox"
+                                        checked={listMode} // Make the checkbox reflect the current state
+                                        onChange={toggleListMode} // Update the state when toggled
+                                    />
+                                    <span className="slider"></span>
+                                </label>
+                            </div>
                         </div>
-                        <div className="bookshelfGrid">
-                            {filteredBooks.map((book) => (
-                                <div
-                                    key={book.id}
-                                    className="bookItem"
-                                    onClick={() => navigate(`/book/${book.id}`)}
-                                    style={{ cursor: "pointer" }}
-                                >
-                                    <p className="bookTitle">{book.name}</p>
-                                </div>
-                            ))}
-                        </div>
+                        {listMode ? (
+                            <div className="bookList">
+                                {filteredBooks.map((book) => (
+                                    <div key={book.id} className="bookListItem" onClick={() => navigate(`/book/${book.id}`)}>
+                                        <p className="bookTitle" style={{fontSize: "23px", padding: "5px"}}>{book.name}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="bookshelfGrid">
+                                {filteredBooks.map((book) => (
+                                    <div key={book.id} className="bookItem" onClick={() => navigate(`/book/${book.id}`)} style={{ cursor: "pointer" }}>
+                                        <p className="bookTitle" style={{fontSize: "20px"}}>{book.name}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 )}
             </div>

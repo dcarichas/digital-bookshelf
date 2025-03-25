@@ -25,5 +25,5 @@ Needs polishing and code organization
 ## Build
 
 1. `npm run tauri build`
-2. The **.exe** file will be stored in *src-tauri/target/release*
+2. The **.exe** (or linux executable) file will be stored in *src-tauri/target/release*
 
