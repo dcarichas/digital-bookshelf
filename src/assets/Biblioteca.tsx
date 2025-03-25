@@ -4,7 +4,6 @@ import Database from "@tauri-apps/plugin-sql";
 import { Book } from "../model/Book.ts";
 import {Loading} from "./Loading.tsx";
 import {Simulate} from "react-dom/test-utils";
-import toggle = Simulate.toggle;
 
 export const Biblioteca: React.FC = () => {
     const [books, setBooks] = useState<Book[]>([]);
